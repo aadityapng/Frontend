@@ -1,33 +1,54 @@
-import React from 'react'
-import InputForm from '../Elements/Input'
-import Button from '../Elements/Button'
+import React, { useState } from "react";
+import InputForm from "../Elements/Input";
+import Button from "../Elements/Button";
+import {login} from "../../services/auth.service";
 
 const FormLogin = () => {
+
+  const [loginFailed, setLoginFailed] = useState("");
+
+  const hendleLogin = (event) => {
+    event.preventDefault();
+    // localStorage.setItem("email", event.target.email.value);
+    // localStorage.setItem("password", event.target.password.value);
+    // window.location.href = "/products";
+    const data = {
+      username: event.target.username.value,
+      password: event.target.password.value,
+    };
+    login(data, (status, res) => {
+      if (status) {
+        localStorage.setItem("token", res);
+        window.location.href = "/products";
+      } else {
+        setLoginFailed(res.response.data);
+        console.log(res.response.data);
+      }
+    });
+  };
   return (
-    <form action="" className="">
-    <InputForm
-      label="Email"
-      type="email"
-      placeholder="Enter your email"
-      name="email"
-    />
-    <InputForm
-      label="Password"
-      type="password"
-      placeholder="********"
-      name="password"
-    />
+    <form onSubmit={hendleLogin}>
+      <InputForm
+        label="Username"
+        type="text"
+        placeholder="username"
+        name="username"
+      />
+      <InputForm
+        label="Password"
+        type="password"
+        placeholder="********"
+        name="password"
+      />
 
-    <div>
-      <Button variant="bg-blue-600 w-full text-white">Login</Button>
-    </div>
-    <div className="mt-4">
-      <Button variant="bg-white border w-full text-blue-600">
-        Register
-      </Button>
-    </div>
-  </form>
-  )
-}
+      <div>
+        <Button variant="bg-blue-600 w-full text-white" type="submit">
+          Login
+        </Button>
+        {loginFailed && <p className="text-red-500 text-sm text-center mt-3">{loginFailed}</p>}
+      </div>
+    </form>
+  );
+};
 
-export default FormLogin
+export default FormLogin;
