@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../Elements/Button";
 import { Link } from "react-router-dom";
+import Counter from "../Elements/Counter/Counter";
+import { removeFromCart, updateCartItem } from "../../redux/slices/cartSlice";
 
 const TableCart = (props) => {
   const { products } = props;
   const cart = useSelector((state) => state.cart.data);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalCart, setTotalCart] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const sum = cart.reduce((acc, item) => {
@@ -20,7 +23,7 @@ const TableCart = (props) => {
     if (products.length > 0 && cart.length > 0) {
       const sum = cart.reduce((acc, item) => {
         const product = products.find((product) => product.id === item.id);
-        return acc + product.price * item.qty;
+        return product && product.harga ? acc + product.harga * item.qty : acc;
       }, 0);
       setTotalPrice(sum);
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -43,12 +46,20 @@ const TableCart = (props) => {
     }
   }, [cart]);
 
+  const handleCounterChange = (itemId, newQty) => {
+    if (newQty === 0) {
+      dispatch(removeFromCart(itemId));
+    } else {
+      dispatch(updateCartItem({ id: itemId, qty: newQty }));
+      localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+    }
+  };
+
   return (
-    <table className="mt-4 text-left text-sm table-auto border-separate border-spacing-x-1 border">
+    <table className="mt-4 text-left text-sm table-auto border-separate border-spacing-y-2 border">
       <thead>
         <tr>
           <th>Name</th>
-          <th>Price</th>
           <th>Qty</th>
           <th>Total</th>
         </tr>
@@ -59,32 +70,35 @@ const TableCart = (props) => {
             const product = products.find((product) => product.id === item.id);
             return (
               <tr key={item.id}>
-                <td>{product.title.substring(0, 10)}..</td>
+                <td>{product && product.nama ? product.nama : "-"}</td>
                 <td>
-                  {product.price.toLocaleString("id-ID", {
-                    styles: "currency",
-                    currency: "IDR",
-                  })}
+                  <Counter
+                    initialValue={item.qty}
+                    onValueChange={(newQty) =>
+                      handleCounterChange(item.id, newQty)
+                    }
+                  />
                 </td>
-                <td>{item.qty}</td>
                 <td>
                   Rp{" "}
-                  {(product.price * item.qty).toLocaleString("id-ID", {
-                    styles: "currency",
-                    currency: "IDR",
-                  })}
+                  {product && product.harga
+                    ? (product.harga * item.qty).toLocaleString("id-ID", {
+                        styles: "currency",
+                        currency: "IDR",
+                      })
+                    : "-"}
                 </td>
               </tr>
             );
           })}
         <tr>
-          <td colSpan={4} className="border-t border-gray-200 pt-4">
+          <td colSpan={3} className="border-t border-gray-200 pt-4">
             <hr />
           </td>
         </tr>
         <tr ref={totalCartRef}>
-          <td colSpan={3}>
-            <b>Total Qty</b>
+          <td colSpan={2}>
+            <b>Total Qty :</b>
           </td>
           <td>
             <b>{totalCart}</b>
@@ -92,8 +106,8 @@ const TableCart = (props) => {
           <td></td>
         </tr>
         <tr ref={totalPriceRef}>
-          <td colSpan={3}>
-            <b>Total Price</b>
+          <td colSpan={2}>
+            <b>Total Price :</b>
           </td>
           <td>
             <b>
@@ -106,12 +120,12 @@ const TableCart = (props) => {
           </td>
         </tr>
         <tr>
-          <td colSpan={4} className="border-t border-gray-200 pt-4">
+          <td colSpan={3} className="border-t border-gray-200 pt-4">
             <hr />
           </td>
         </tr>
         <tr ref={paymentButtonRef}>
-          <td colSpan={5} className="text-center">
+          <td colSpan={3} className="text-center">
             <Link to="/payment">
               <Button variant="bg-blue-500 text-white hover:bg-blue-700 w-full font-bold text-md">
                 Payment

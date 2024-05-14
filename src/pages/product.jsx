@@ -6,17 +6,28 @@ import { useLogin } from "../hooks/useLogin";
 import TableCart from "../components/Fragments/TableCart";
 import Navbar from "../components/Layouts/Navbar";
 import { DarkMode } from "../context/DarkMode";
+import { getCategory } from "../services/category.service";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("Makanan");
   const { isDarkMode } = useContext(DarkMode);
   useLogin();
 
   useEffect(() => {
+    getCategory((data) => {
+      setCategories(data);
+    });
+
     getProducts((data) => {
       setProducts(data);
     });
   }, []);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <Fragment>
@@ -32,7 +43,10 @@ const ProductsPage = () => {
               Categorie
             </h1>
           </div>
-          <MenuCategories />
+          <MenuCategories
+            categories={categories}
+            onCategoryClick={handleCategoryClick}
+          />
         </div>
         <div className="w-7/12 flex flex-wrap">
           <div className="w-full flex flex-col">
@@ -42,15 +56,20 @@ const ProductsPage = () => {
           </div>
           <div className="w-full grid grid-cols-3 gap-4 mt-3 mr-4">
             {products.length > 0 &&
-              products.map((product) => (
-                <CardProduct key={product.id}>
-                  <CardProduct.Header image={product.image} id={product.id} />
-                  <CardProduct.Body name={product.title}>
-                    {product.description}
-                  </CardProduct.Body>
-                  <CardProduct.Footer price={product.price} id={product.id} />
-                </CardProduct>
-              ))}
+              products
+                .filter((product) => product.category.nama === selectedCategory)
+                .map((product) => (
+                  <CardProduct key={product.id}>
+                    <CardProduct.Header
+                      gambar={`/assets/images/${product.category.nama.toLowerCase()}/${
+                        product.gambar
+                      }`}
+                      id={product.id}
+                    />
+                    <CardProduct.Body nama={product.nama} />
+                    <CardProduct.Footer harga={product.harga} id={product.id} />
+                  </CardProduct>
+                ))}
           </div>
         </div>
         <div className="w-3/12">

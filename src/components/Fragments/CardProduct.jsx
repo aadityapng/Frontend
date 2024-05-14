@@ -14,11 +14,11 @@ const CardProduct = (props) => {
 };
 
 const Header = (props) => {
-  const { image, id } = props;
+  const { gambar, id } = props;
   return (
     <Link to={`/product/${id}`}>
       <img
-        src={image}
+        src={gambar}
         alt="product"
         className="rounded-t-lg h-40 w-full object-cover"
       />
@@ -27,28 +27,27 @@ const Header = (props) => {
 };
 
 const Body = (props) => {
-  const { name, children } = props;
+  const { nama } = props;
   return (
     <div className="px-5 pb-5 h-full">
       <Link>
         <h5 className="text-xl font-semibold tracking-tight text-gray-900">
-          {name.substring(0, 10)}...
+          {nama}
         </h5>
-        <p className="text-gray-700 text-sm">{children.substring(0, 10)}..</p>
       </Link>
     </div>
   );
 };
 
 const Footer = (props) => {
-  const { price, id } = props;
+  const { harga, id } = props;
   const dispatch = useDispatch();
 
   return (
     <div className="flex items-center justify-between px-3 py-2 bg-gray-400">
       <span className="text-sm font-bold text-white">
         Rp{" "}
-        {price.toLocaleString("id-ID", {
+        {harga.toLocaleString("id-ID", {
           styles: "currency",
           currency: "IDR",
         })}
