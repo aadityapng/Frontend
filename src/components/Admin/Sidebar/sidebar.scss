@@ -1,0 +1,8 @@
+.menu-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    transition: all .32s;
+    &.active {
+      background-color: #7165e9;
+    }
+  }

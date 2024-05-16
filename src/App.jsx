@@ -1,5 +1,8 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Admin from "./pages/Management/Admin";
+import Dashboard from "./pages/Management/Dashboard"
+import Layout from "./components/Admin/Layout";
 import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
 import ErrorPage from "./pages/404";
@@ -39,6 +42,20 @@ const router = createBrowserRouter([
     path: "/payment",
     element: <PaymentPage />,
   },
+  {
+    path: "management",
+    element: <Layout />,
+    children: [
+      {
+        path: "dashboard",
+        element: <Dashboard />
+      },
+      {
+        path: "admin",
+        element: <Admin />
+      }
+    ]
+  }
 ]);
 
 function App() {

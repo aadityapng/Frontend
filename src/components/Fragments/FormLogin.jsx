@@ -18,11 +18,11 @@ const FormLogin = () => {
     };
     login(data, (status, res) => {
       if (status) {
-        localStorage.setItem("token", res);
-        window.location.href = "/products";
+        localStorage.setItem("token", res.data.token);
+        window.location.href = "/management/dashboard";
       } else {
-        setLoginFailed(res.response.data);
-        console.log(res.response.data);
+        setLoginFailed(res.response?.data?.message);
+        console.log(res.response.data.message);
       }
     });
   };
