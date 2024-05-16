@@ -3,9 +3,9 @@ import { jwtDecode } from "jwt-decode";
 
 export const login = (data, callback) => {
   axios
-    .post("https://fakestoreapi.com/auth/login", data)
+    .post(`${process.env.REACT_APP_API_URL}/auth`, data)
     .then((res) => {
-      callback(true, res.data.token);
+      callback(true, res.data);
     })
     .catch((error) => {
       callback(false, error);
