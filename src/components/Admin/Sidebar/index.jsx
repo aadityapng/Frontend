@@ -1,11 +1,7 @@
 import {
     HomeOutlined,
-    EnvironmentOutlined,
     UserOutlined,
-    BankOutlined,
     FormOutlined,
-    FileExcelOutlined,
-    CheckSquareOutlined,
   } from "@ant-design/icons";
   import classNames from "classnames";
   import React, { useState, useEffect } from "react";
@@ -30,42 +26,12 @@ import {
         link: "/management/admin",
         roles: [1, 2, 3, 4],
       },
-      // {
-      //   label: "Lokasi",
-      //   icon: <EnvironmentOutlined />,
-      //   link: "/location",
-      //   roles: [1, 2, 3, 4, 5],
-      // },
-      // {
-      //   label: "Jadwal",
-      //   icon: <FormOutlined />,
-      //   link: "/schedule",
-      //   roles: [1, 2, 3, 4, 5],
-      // },
-      // {
-      //   label: "Checklist",
-      //   icon: <CheckSquareOutlined />,
-      //   link: "/checklist",
-      //   roles: [1, 2, 3, 4, 5],
-      // },
-      // {
-      //   label: "Absensi Report",
-      //   icon: <FileExcelOutlined />,
-      //   link: "/report-absent",
-      //   roles: [1, 2, 3, 4, 5],
-      // },
-      // {
-      //   label: "Checklist Report",
-      //   icon: <FileExcelOutlined />,
-      //   link: "/report-checklist",
-      //   roles: [1, 2, 3, 4, 5],
-      // },
-      // {
-      //   label: "Perusahaan",
-      //   icon: <BankOutlined />,
-      //   link: "/company",
-      //   roles: [1],
-      // },
+      {
+        label: "Order",
+        icon: <FormOutlined />,
+        link: "/management/order",
+        roles: [1, 2, 3, 4, 5],
+      },
     ];
   
     useEffect(() => {
