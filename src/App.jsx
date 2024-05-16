@@ -10,6 +10,7 @@ import ProductsPage from "./pages/product";
 import ProfilePage from "./pages/profile";
 import DetailProductPage from "./pages/detailProduct";
 import PaymentPage from "./pages/payment";
+import Order from "./pages/Management/Order"
 import WelcomePage from "./pages/welcome";
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "admin",
         element: <Admin />
+      },
+      {
+        path: "order",
+        element: <Order />
       }
     ]
   }
