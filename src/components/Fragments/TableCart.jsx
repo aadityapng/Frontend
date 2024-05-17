@@ -23,7 +23,7 @@ const TableCart = (props) => {
     if (products.length > 0 && cart.length > 0) {
       const sum = cart.reduce((acc, item) => {
         const product = products.find((product) => product.id === item.id);
-        return product && product.harga ? acc + product.harga * item.qty : acc;
+        return product && product.price ? acc + product.price * item.qty : acc;
       }, 0);
       setTotalPrice(sum);
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -71,7 +71,7 @@ const TableCart = (props) => {
             const product = products.find((product) => product.id === item.id);
             return (
               <tr key={item.id}>
-                <td>{product && product.nama ? product.nama : "-"}</td>
+                <td>{product && product.name ? product.name : "-"}</td>
                 <td>
                   <Counter
                     initialValue={item.qty}
@@ -82,8 +82,8 @@ const TableCart = (props) => {
                 </td>
                 <td>
                   Rp{" "}
-                  {product && product.harga
-                    ? (product.harga * item.qty).toLocaleString("id-ID", {
+                  {product && product.price
+                    ? (product.price * item.qty).toLocaleString("id-ID", {
                         styles: "currency",
                         currency: "IDR",
                       })
