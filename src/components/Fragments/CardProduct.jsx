@@ -40,14 +40,14 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const { harga, id } = props;
+  const { price, id } = props;
   const dispatch = useDispatch();
 
   return (
     <div className="flex items-center justify-between px-3 py-2 bg-gray-400">
       <span className="text-sm font-bold text-white">
         Rp{" "}
-        {harga.toLocaleString("id-ID", {
+        {price.toLocaleString("id-ID", {
           styles: "currency",
           currency: "IDR",
         })}
