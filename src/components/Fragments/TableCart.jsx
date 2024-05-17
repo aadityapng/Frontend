@@ -51,10 +51,10 @@ const TableCart = (props) => {
       dispatch(removeFromCart(itemId));
     } else {
       dispatch(updateCartItem({ id: itemId, qty: newQty }));
-      localStorage.setItem("cart", JSON.stringify(cart)); 
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
   };
-
+  console.log(cart);
 
   return (
     <table className="mt-4 text-left text-sm table-auto border-separate border-spacing-y-2 border">

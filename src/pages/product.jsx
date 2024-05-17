@@ -54,7 +54,7 @@ const ProductsPage = () => {
               Menu
             </h1>
           </div>
-          <div className="w-full grid grid-cols-3 gap-4 mt-3 mr-4">
+          <div className="w-full grid grid-cols-3 gap-4 mt-3 mr-4 items-start">
             {products.length > 0 &&
               products
                 .filter((product) => product.category.nama === selectedCategory)
