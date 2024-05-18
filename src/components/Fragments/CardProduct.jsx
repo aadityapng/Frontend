@@ -27,12 +27,12 @@ const Header = (props) => {
 };
 
 const Body = (props) => {
-  const { nama } = props;
+  const { name } = props;
   return (
     <div className="px-5 pb-5 h-full">
       <Link>
         <h5 className="text-xl font-semibold tracking-tight text-gray-900">
-          {nama}
+          {name}
         </h5>
       </Link>
     </div>

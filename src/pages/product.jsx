@@ -29,6 +29,8 @@ const ProductsPage = () => {
     setSelectedCategory(category);
   };
 
+  console.log(getProducts);
+
   return (
     <Fragment>
       <Navbar />
@@ -62,11 +64,11 @@ const ProductsPage = () => {
                   <CardProduct key={product.id}>
                     <CardProduct.Header
                       gambar={`/assets/images/${product.category.name.toLowerCase()}/${
-                        product.gambar
+                        product.menu_photo
                       }`}
                       id={product.id}
                     />
-                    <CardProduct.Body nama={product.name} />
+                    <CardProduct.Body name={product.name} />
                     <CardProduct.Footer price={product.price} id={product.id} />
                   </CardProduct>
                 ))}
