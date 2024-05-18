@@ -14,11 +14,11 @@ const CardProduct = (props) => {
 };
 
 const Header = (props) => {
-  const { gambar, id } = props;
+  const { menu_photo, id } = props;
   return (
     <Link to={`/product/${id}`}>
       <img
-        src={gambar}
+        src={menu_photo}
         alt="product"
         className="rounded-t-lg h-40 w-full object-cover"
       />
@@ -27,12 +27,12 @@ const Header = (props) => {
 };
 
 const Body = (props) => {
-  const { nama } = props;
+  const { name } = props;
   return (
     <div className="px-5 pb-5 h-full">
       <Link>
         <h5 className="text-xl font-semibold tracking-tight text-gray-900">
-          {nama}
+          {name}
         </h5>
       </Link>
     </div>

@@ -22,12 +22,19 @@ const ProductsPage = () => {
 
     getProducts((data) => {
       setProducts(data);
+      console.log("Products berhasil diambil:", data);
     });
   }, []);
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
+
+  const filteredProducts = products.filter((product) => {
+    return (
+      product.category?.name.toLowerCase() === selectedCategory.toLowerCase()
+    );
+  });
 
   return (
     <Fragment>
@@ -56,20 +63,21 @@ const ProductsPage = () => {
           </div>
           <div className="w-full grid grid-cols-3 gap-4 mt-3 mr-4 items-start">
             {products.length > 0 &&
-              products
-                .filter((product) => product.category.name === selectedCategory)
-                .map((product) => (
-                  <CardProduct key={product.id}>
-                    <CardProduct.Header
-                      gambar={`/assets/images/${product.category.name.toLowerCase()}/${
-                        product.gambar
-                      }`}
-                      id={product.id}
-                    />
-                    <CardProduct.Body nama={product.name} />
-                    <CardProduct.Footer price={product.price} id={product.id} />
-                  </CardProduct>
-                ))}
+              filteredProducts.map((product) => {
+                <CardProduct key={product.id}>
+                  <CardProduct.Header
+                    menu_photo={`/assets/images/${
+                      product.category
+                        ? product.category.name.toLowerCase()
+                        : "default"
+                    }/${product.menu_photo}`}
+                    id={product.id}
+                  />
+                  <CardProduct.Body name={product.name} />
+                  <CardProduct.Footer price={product.price} id={product.id} />
+                </CardProduct>;
+              })}
+            ;
           </div>
         </div>
         <div className="w-3/12">

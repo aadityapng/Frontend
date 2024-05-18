@@ -32,17 +32,18 @@ const MenuCategories = ({ categories, onCategoryClick }) => {
         isDarkMode ? "bg-slate-500" : "bg-white"
       } w-full p-0 mt-5 [&_li>*]:rounded-none`}
     >
-      {categories.map((category) => (
-        <li key={category.id} className="border">
-          <Link
-            className="flex items-center font-bold"
-            onClick={() => handleCategoryClick(category)}
-          >
-            {getIconForCategory(category.name)}
-            <span className="text-base">{category.name}</span>
-          </Link>
-        </li>
-      ))}
+      {Array.isArray(categories) &&
+        categories.map((category) => (
+          <li key={category.id} className="border">
+            <Link
+              className="flex items-center font-bold"
+              onClick={() => handleCategoryClick(category)}
+            >
+              {getIconForCategory(category.name)}
+              <span className="text-base">{category.name}</span>
+            </Link>
+          </li>
+        ))}
     </ul>
   );
 };
