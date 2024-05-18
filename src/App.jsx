@@ -4,6 +4,8 @@ import Admin from "./pages/Management/Admin";
 import Dashboard from "./pages/Management/Dashboard"
 import Layout from "./components/Admin/Layout";
 import LoginPage from "./pages/login";
+import Menu from "./pages/Management/Menu";
+import MenuCategories from "./pages/Management/MenuCategories";
 import RegisterPage from "./pages/register";
 import ErrorPage from "./pages/404";
 import ProductsPage from "./pages/product";
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: "admin",
         element: <Admin />
+      },
+      {
+        path: "menu-category",
+        element: <MenuCategories />
+      },
+      {
+        path: "list-menu",
+        element: <Menu />
       },
       {
         path: "order",
