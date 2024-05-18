@@ -18,5 +18,3 @@ export const getDetailProducts = (id, callback) => {
     console.log(err);
   })
 };
-
-

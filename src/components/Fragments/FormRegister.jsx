@@ -12,7 +12,7 @@ const FormRegister = () => {
         name="fullname"
       />
       <InputForm
-        label="Fullname"
+        label="Email"
         type="email"
         placeholder="Enter your email"
         name="email"
