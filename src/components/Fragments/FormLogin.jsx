@@ -18,7 +18,9 @@ const FormLogin = () => {
     };
     login(data, (status, res) => {
       if (status) {
-        localStorage.setItem("token", res.data.token);
+        const token = res.data.token;
+        localStorage.setItem("token", token);
+        localStorage.setItem("roleId", 1);
         window.location.href = "/management/dashboard";
       } else {
         setLoginFailed(res.response?.data?.message);
