@@ -10,7 +10,7 @@ const MenuCategories = ({ categories, onCategoryClick }) => {
   const { isDarkMode } = useContext(DarkMode);
 
   const handleCategoryClick = (category) => {
-    onCategoryClick(category.nama);
+    onCategoryClick(category.name);
   };
 
   const getIconForCategory = (categoryName) => {
@@ -38,8 +38,8 @@ const MenuCategories = ({ categories, onCategoryClick }) => {
             className="flex items-center font-bold"
             onClick={() => handleCategoryClick(category)}
           >
-            {getIconForCategory(category.nama)}
-            <span className="text-base">{category.nama}</span>
+            {getIconForCategory(category.name)}
+            <span className="text-base">{category.name}</span>
           </Link>
         </li>
       ))}

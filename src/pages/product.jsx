@@ -57,17 +57,17 @@ const ProductsPage = () => {
           <div className="w-full grid grid-cols-3 gap-4 mt-3 mr-4 items-start">
             {products.length > 0 &&
               products
-                .filter((product) => product.category.nama === selectedCategory)
+                .filter((product) => product.category.name === selectedCategory)
                 .map((product) => (
                   <CardProduct key={product.id}>
                     <CardProduct.Header
-                      gambar={`/assets/images/${product.category.nama.toLowerCase()}/${
+                      gambar={`/assets/images/${product.category.name.toLowerCase()}/${
                         product.gambar
                       }`}
                       id={product.id}
                     />
-                    <CardProduct.Body nama={product.nama} />
-                    <CardProduct.Footer harga={product.harga} id={product.id} />
+                    <CardProduct.Body nama={product.name} />
+                    <CardProduct.Footer price={product.price} id={product.id} />
                   </CardProduct>
                 ))}
           </div>
