@@ -2,6 +2,8 @@ import {
     HomeOutlined,
     UserOutlined,
     FormOutlined,
+    BarsOutlined,
+    CoffeeOutlined
   } from "@ant-design/icons";
   import classNames from "classnames";
   import React, { useState, useEffect } from "react";
@@ -24,6 +26,18 @@ import {
         label: "Admin",
         icon: <UserOutlined />,
         link: "/management/admin",
+        roles: [1, 2, 3, 4],
+      },
+      {
+        label: "Kategori Menu",
+        icon: <BarsOutlined />,
+        link: "/management/menu-category",
+        roles: [1, 2, 3, 4],
+      },
+      {
+        label: "Menu",
+        icon: <CoffeeOutlined />,
+        link: "/management/list-menu",
         roles: [1, 2, 3, 4],
       },
       {
