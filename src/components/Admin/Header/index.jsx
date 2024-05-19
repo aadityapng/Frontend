@@ -16,12 +16,12 @@ const Header = ({ handleSidebarToggle }) => {
     }
   };
 
-  const handleLogout = async () => {
-    message.success({
-      content: "Logout Success",
-    });
-    window.location.href = "/login";
-  };
+  // const handleLogout = async () => {
+  //   message.success({
+  //     content: "Logout Success",
+  //   });
+  //   window.location.href = "/login";
+  // };
   return (
     <div className="flex justify-between align-center mb-8 p-4 header-wp">
       <button onClick={handleSidebarToggle} className="btn-collapse">
@@ -33,11 +33,11 @@ const Header = ({ handleSidebarToggle }) => {
           <img src={"/assets/images/user-donut.png"} className="logo" />
         </div>
       </div>
-      <div className={`menu-profile ${isActive && "active"}`}>
+      {/* <div className={`menu-profile ${isActive && "active"}`}>
         <div className="title-menu" onClick={handleLogout}>
           Logout
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
