@@ -74,11 +74,7 @@ const ProductsPage = () => {
             {filteredProducts.map((product) => (
               <CardProduct key={product.id}>
                 <CardProduct.Header
-                  menu_photo={`/assets/images/${
-                    product.MasterMenuCategory
-                      ? product.MasterMenuCategory.name.toLowerCase()
-                      : "default"
-                  }/${product.menu_photo}`}
+                  menu_photo={product.menu_photo}
                   id={product.id}
                 />
                 <CardProduct.Body name={product.name} />
