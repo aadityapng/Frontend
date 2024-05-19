@@ -30,11 +30,20 @@ const ProductsPage = () => {
     setSelectedCategory(category);
   };
 
+  console.log();
+
   const filteredProducts = products.filter((product) => {
+    console.log(
+      "ini produk category name",
+      product.MasterMenuCategory?.name.toLowerCase()
+    );
+    console.log("ini selected category name", selectedCategory.toLowerCase());
     return (
-      product.category?.name.toLowerCase() === selectedCategory.toLowerCase()
+      product.MasterMenuCategory?.name.toLowerCase() ===
+      selectedCategory.toLowerCase()
     );
   });
+  console.log("ini filter produk", filteredProducts);
 
   return (
     <Fragment>
@@ -62,21 +71,20 @@ const ProductsPage = () => {
             </h1>
           </div>
           <div className="w-full grid grid-cols-3 gap-4 mt-3 mr-4 items-start">
-            {products.length > 0 &&
-              filteredProducts.map((product) => {
-                <CardProduct key={product.id}>
-                  <CardProduct.Header
-                    menu_photo={`/assets/images/${
-                      product.category
-                        ? product.category.name.toLowerCase()
-                        : "default"
-                    }/${product.menu_photo}`}
-                    id={product.id}
-                  />
-                  <CardProduct.Body name={product.name} />
-                  <CardProduct.Footer price={product.price} id={product.id} />
-                </CardProduct>;
-              })}
+            {filteredProducts.map((product) => {
+              <CardProduct key={product.id}>
+                <CardProduct.Header
+                  menu_photo={`/assets/images/${
+                    product.MasterMenuCategory
+                      ? product.MasterMenuCategory.name.toLowerCase()
+                      : "default"
+                  }/${product.menu_photo}`}
+                  id={product.id}
+                />
+                <CardProduct.Body name={product.name} />
+                <CardProduct.Footer price={product.price} id={product.id} />
+              </CardProduct>;
+            })}
             ;
           </div>
         </div>
