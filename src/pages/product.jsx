@@ -11,7 +11,7 @@ import { getCategory } from "../services/category.service";
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Makanan");
+  const [selectedCategory, setSelectedCategory] = useState("Food");
   const { isDarkMode } = useContext(DarkMode);
   useLogin();
 
@@ -71,7 +71,7 @@ const ProductsPage = () => {
             </h1>
           </div>
           <div className="w-full grid grid-cols-3 gap-4 mt-3 mr-4 items-start">
-            {filteredProducts.map((product) => {
+            {filteredProducts.map((product) => (
               <CardProduct key={product.id}>
                 <CardProduct.Header
                   menu_photo={`/assets/images/${
@@ -83,8 +83,8 @@ const ProductsPage = () => {
                 />
                 <CardProduct.Body name={product.name} />
                 <CardProduct.Footer price={product.price} id={product.id} />
-              </CardProduct>;
-            })}
+              </CardProduct>
+            ))}
             ;
           </div>
         </div>
