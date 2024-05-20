@@ -18,13 +18,13 @@ const Navbar = () => {
     <nav className={`${isDarkMode ? "bg-black" : "bg-gray-500"} text-white py-2 px-6 flex items-center justify-between`}>
       <div className="text-xl font-bold">Restaurant Self-Service</div>
       <div className="flex items-center font-bold">
-        <span className="mr-4">Welcome, {username}</span>
+        {/* <span className="mr-4">Welcome, {username}</span>
         <Button
           variant="bg-red-500 hover:bg-red-700 text-white rounded-md py-2 px-4"
           onClick={handleLogout}
         >
           Logout
-        </Button>
+        </Button> */}
         <button
         className="p-1 bg-black rounded ml-2"
         onClick={() => setIsDarkMode(!isDarkMode)}
